@@ -50,8 +50,16 @@ begin
                   wait for 50 ns;      
             DataIn<='0';
                   wait for 50 ns;                              
-            DataIn<='0';
+            DataIn<='1';
+                  wait for 50 ns;
+            DataIn<='1';
+                  wait for 50 ns;
+            DataIn<='1';
                   wait for 50 ns;      
+            DataIn<='1';
+                  wait for 50 ns;
+            DataIn<='0';
+                  wait for 50 ns;                                    
             wait;
                   wait;
      end process;

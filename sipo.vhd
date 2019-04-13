@@ -20,11 +20,11 @@ begin
             temporary <= (temporary(2 downto 0) & DataIn);
             counter <= counter + 1;
             
-            if counter = 4 then
-                DataOut <= temporary;
-                counter <= 1;
-            end if; 
+            
         end if;
+        if counter = 4 then
+                DataOut <= temporary;
+                counter <= 0;
+        end if; 
     end process;
-    
 end Behavioral;
