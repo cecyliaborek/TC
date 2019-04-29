@@ -5,7 +5,7 @@ entity sygnalizacja is
     Port ( przycisk : in STD_LOGIC;
            clk : in STD_LOGIC;
            swiatlaPieszego : out STD_LOGIC_VECTOR(1 downto 0):= "10";
-           swiatlaSamochodu : out STD_LOGIC_VECTOR(2 downto 0) := "001"
+           swiatlaSamochodu : out STD_LOGIC_VECTOR(2 downto 0):= "001"
            );
 end sygnalizacja;
     
@@ -15,7 +15,7 @@ architecture Behavioral of sygnalizacja is
    --Declare internal signals for all outputs of the state-machine
    signal samochod : std_logic_vector(2 downto 0);  -- example output signal
    signal pieszy : std_logic_vector(1 downto 0);
-   signal licznik : integer;
+   signal licznik : integer := 0;
    
 
 --Insert the following in the architecture after the begin keyword
@@ -71,28 +71,28 @@ begin
       case (state) is
          when st1_Z_C =>
             if przycisk = '1' then
-                if licznik = 10 then
+                if licznik >= 10 then
                     next_state <= st2_P_C;
                 end if;
             end if;
          when st2_P_C =>
-            if licznik = 3 then
+            if licznik >= 3 then
                next_state <= st3_C_C;
             end if;
          when st3_C_C =>
-            if licznik = 3 then
+            if licznik >= 3 then
                 next_state <= st4_C_Z;
             end if;
          when st4_C_Z =>
-            if licznik = 10 then
+            if licznik >= 10 then
                 next_state <= st5_C_C;
             end if;
          when st5_C_C =>
-            if licznik = 3 then
+            if licznik >= 3 then
                 next_state <= st6_P_C;
             end if;
          when st6_P_C =>
-            if licznik = 2 then
+            if licznik >= 2 then
                 next_state <= st1_Z_C;
             end if;
       end case;
